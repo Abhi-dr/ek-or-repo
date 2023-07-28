@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard {{lname}} Sahab</title>
+
+    <style>
+        #topnav {
+            display: flex;
+            justify-content: space-between;
+            background-color: brown;
+            padding: 2%;
+
+            border-radius: 15px;
+        }
+
+        #topnav span {
+            font-size: 40px;
+        }
+
+        li {
+            background-color: burlywood;
+            border-radius: 5px;
+            padding: 5px;
+
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            gap: 10%;
+
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #holder {
+            padding: 5%;
+            border-radius: 5%;
+            background-color: aqua;
+            width: 30%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            margin-left: 30%;
+        }
+
+        input {
+            margin: 3%;
+            width: 60%;
+        }
+
+        button {
+            padding: 3%;
+            border-radius: 4%;
+            margin-left: 40%;
+            margin-top: 5%;
+        }
+
+        label {
+            margin: 3%;
+        }
+
+        textarea {
+            margin-left: 18%;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        button {
+            margin-left: 40%;
+        }
+    </style>
+
+    <div id="topnav"><span>Update here sir {{fname}}</span>
+        <ul>
+            <li><a href="{% url 'notes' %}">Your_Notes</a></li>
+        </ul>
+    </div>
+
+
+
+    <div id="holder">
+        <h1>FORM</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="Title">Title:</label>
+            <input type="text" maxlength="30" name="title" value="{{ note.title }}"><br>
+
+
+            <label for="description">Description:</label><br>
+
+
+            <textarea name="description" id="area" cols="30" rows="10">{{ note.description }}</textarea><br>
+            <button type="submit">UPDATE</button>
+        </form>
+    </div>
+</body>
+
+</html>
