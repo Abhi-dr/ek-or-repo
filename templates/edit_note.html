@@ -1,109 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DashBoard {{lname}} Sahab</title>
+{% block mytitle %}
+Edit Note
+{% endblock %}
 
-    <style>
-        #topnav {
-            display: flex;
-            justify-content: space-between;
-            background-color: brown;
-            padding: 2%;
+{% block mycss %}
 
-            border-radius: 15px;
-        }
+<style>
 
-        #topnav span {
-            font-size: 40px;
-        }
+    body{
+        background-image: url("https://images.unsplash.com/photo-1689081777651-eef75a48e959?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80");
+    }
 
-        li {
-            background-color: burlywood;
-            border-radius: 5px;
-            padding: 5px;
+    #topnav {
+        display: flex;
+        justify-content: space-between;
+        background-color: brown;
+        padding: 2%;
 
-        }
+        border-radius: 15px;
+    }
 
-        ul {
-            list-style: none;
-            display: flex;
-            justify-content: space-around;
-            gap: 10%;
+    #topnav span {
+        font-size: 40px;
+    }
 
-        }
+    li {
+        background-color: burlywood;
+        border-radius: 5px;
+        padding: 5px;
 
-        a {
-            text-decoration: none;
-        }
+    }
 
-        #holder {
-            padding: 5%;
-            border-radius: 5%;
-            background-color: aqua;
-            width: 30%;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-around;
+        gap: 10%;
 
-        h1 {
-            margin-left: 30%;
-        }
+    }
 
-        input {
-            margin: 3%;
-            width: 60%;
-        }
+    a {
+        text-decoration: none;
+    }
 
-        button {
-            padding: 3%;
-            border-radius: 4%;
-            margin-left: 40%;
-            margin-top: 5%;
-        }
+    #holder {
+        padding: 5%;
+        border-radius: 5%;
+        background-color: aqua;
+        width: 30%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-        label {
-            margin: 3%;
-        }
+    h1 {
+        margin-left: 30%;
+    }
 
-        textarea {
-            margin-left: 18%;
-        }
-    </style>
-</head>
+    input {
+        margin: 3%;
+        width: 60%;
+    }
 
-<body>
-    <style>
-        button {
-            margin-left: 40%;
-        }
-    </style>
+    button {
+        padding: 3%;
+        border-radius: 4%;
+        margin-left: 40%;
+        margin-top: 5%;
+    }
 
-    <div id="topnav"><span>Update here sir {{fname}}</span>
-        <ul>
-            <li><a href="{% url 'notes' %}">Your_Notes</a></li>
-        </ul>
-    </div>
+    label {
+        margin: 3%;
+    }
 
+    textarea {
+        margin-left: 18%;
+    }
+</style>
 
+{% endblock %}
 
-    <div id="holder">
-        <h1>FORM</h1>
-        <form method="post">
-            {% csrf_token %}
-            <label for="Title">Title:</label>
-            <input type="text" maxlength="30" name="title" value="{{ note.title }}"><br>
+{% block mybutton %}
+<a class="btn btn-outline-primary" href="{% url 'dashboard' %}">Home</a>
+<a class="btn btn-outline-primary" href="{% url 'notes' %}">Notes</a>
+{% endblock %}
+
+{% block body %}
+
+<div id="holder">
+    <h1>FORM</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="Title">Title:</label>
+        <input type="text" maxlength="30" name="title" value="{{ note.title }}"><br>
 
 
-            <label for="description">Description:</label><br>
+        <label for="description">Description:</label><br>
 
 
-            <textarea name="description" id="area" cols="30" rows="10">{{ note.description }}</textarea><br>
-            <button type="submit">UPDATE</button>
-        </form>
-    </div>
-</body>
+        <textarea name="description" id="area" cols="30" rows="10">{{ note.description }}</textarea><br>
+        <button type="submit">UPDATE</button>
+    </form>
+</div>
 
-</html>
+{% endblock %}
+

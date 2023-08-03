@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block mytitle %}  {% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-image: url("https://thumbs.dreamstime.com/b/cool-wallpapers-backgrounds-check-out-our-68126782.jpg");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #div3 {
+            border: 2px solid black;
+            padding: .2rem;
+            width: 17rem;
+            margin-bottom: 2rem;
+            background-color: rgb(150, 187, 168);
+        }
+
+        h2 {
+            margin-top: .3rem;
+            margin-bottom: .3rem;
+        }
+
+        hr {
+            color: black;
+
+        }
+
+        #txtarea {}
+
+        #main1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-left: 8rem;
+            margin-top: 2rem;
+
+        }
+
+        #main {
+            display: flex;
+            justify-content: space-between;
+            height: 10vh;
+            background-color: rgb(97, 134, 156);
+        }
+
+        #div1 {
+            margin-left: .7rem;
+        }
+
+        #div2 {
+            margin-top: 1.4rem;
+        }
+    </style>
+
+    {% block mycss %}
+    {% endblock %}
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #bbdef8;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'dashboard' %}">Welcome {{ user.first_name }}!</a>
+
+            {% block mybutton %}
+            {% endblock %}
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+    {% block body %}
+
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
