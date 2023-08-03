@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 
 from .models import Note
 
@@ -28,6 +29,8 @@ def logout(request):
 def invalid(request):
     return render(request, "invalid.html")
 
+
+@login_required(login_url="login")
 def dashboard(request):
     
     user = request.user
@@ -45,17 +48,12 @@ def dashboard(request):
         new_note.save()
         return redirect("notes")
     
-
-    
-    
-    
-    
     parameters = {
         "user": user
     }
     
     return render(request, "dashboard.html", parameters)
-
+@login_required(login_url="login")
 def notes(request):
     
     user = request.user

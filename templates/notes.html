@@ -70,14 +70,14 @@
         {% for note in notes %}
 
         <div id="div3">
-            <h2>{{ note.id }}: {{ note.title }}</h2>
+            <h2>{{ note.id }}: {{ note.title }} By {{ note.user.first_name }}</h2>
             <hr>
             <center>
                 <h2>-Description- </h2>
                     <p>{{ note.description }}</p>
 
                     <a href="delete_note/{{ note.id }}">Delete Note</a>
-                    <a href="edit_note/{{ note.id }}">Edit Note</a>
+                    <a href="{% url 'edit_note' note.id %}">Edit Note</a>
 
             </center>
 
