@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sv9h7*4cja7@rd9uth2+!q+jod0ke%ioxuil0b7tu9hg!7fnf*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["192.168.198.81", "*"]
 
@@ -123,6 +123,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     "static"
 ]
+
+MEDIA_URL = "/media/"  # kha s dekhega
+
+MEDIA_ROOT = "media"   # Kaha pr upload hongi
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

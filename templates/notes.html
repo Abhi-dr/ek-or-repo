@@ -19,6 +19,9 @@ My Notes
         <h2>{{ note.id }}: {{ note.title }} By {{ note.user.first_name }}</h2>
         <hr>
         <center>
+
+            <img src="{{ note.note_img.url }}" style="width: 95%; height:30vh; border-radius: 8px;" alt="">
+
             <h2>-Description- </h2>
                 <p>{{ note.description }}</p>
 

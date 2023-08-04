@@ -9,14 +9,9 @@ class Note(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField()
     
-    choices = (
-        ("Maths", "Maths"),
-        ("English", "English"),
-    )
-    
-    subject = models.CharField(max_length=30, choices=choices)
+    note_img = models.ImageField(upload_to="note_images", blank=True, null=True)    
     
     def __str__(self):
         return self.title
-    
+
 

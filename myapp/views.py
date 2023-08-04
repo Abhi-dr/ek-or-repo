@@ -38,6 +38,7 @@ def dashboard(request):
     if request.method == "POST":
         title = request.POST.get("title")
         desc = request.POST.get("desc")
+        image = request.FILES["image"]
         
         new_note = Note.objects.create(
             user = user,
@@ -45,6 +46,7 @@ def dashboard(request):
             description = desc
         )
         
+        new_note.note_img = image
         new_note.save()
         return redirect("notes")
     
@@ -93,3 +95,8 @@ def delete_note(request, id):
     note.delete()
     
     return redirect("notes")
+
+# =================================================================
+
+def page_not_found_view(request, exception):
+    return render(request, "404.html", status=404, parameters = {"exception": exception})
