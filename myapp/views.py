@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 
 from .models import Note
@@ -18,12 +18,17 @@ def login(request):
             return redirect("dashboard")
     
         else:
-            return redirect("invalid")
+            
+            messages.success(request, "Invalid Credentials")
+            return redirect("login")
     
     return render(request, "login.html")
 
 def logout(request):
     auth.logout(request)
+    
+    messages.success(request, "Thanks for using this website!")
+
     return redirect("login")
 
 def invalid(request):
@@ -48,6 +53,9 @@ def dashboard(request):
         
         new_note.note_img = image
         new_note.save()
+        
+        messages.success(request, "New note has been added successfully!")
+        
         return redirect("notes")
     
     parameters = {
@@ -68,6 +76,7 @@ def notes(request):
     
     return render(request, "notes.html", parameters)
 
+@login_required(login_url="login")
 def edit_note(request, id):
     
     note = Note.objects.get(id = id)
@@ -80,6 +89,8 @@ def edit_note(request, id):
         note.description = new_description
         
         note.save()
+        messages.info(request, "Note has been UPDATED successfully!")
+
         
         return redirect("notes")
     
@@ -89,10 +100,13 @@ def edit_note(request, id):
     
     return render(request, "edit_note.html", parameters)
 
+@login_required(login_url="login")
 def delete_note(request, id):
     
     note = Note.objects.get(id = id)
     note.delete()
+    
+    messages.success(request, "Note has been deleted successfully!")
     
     return redirect("notes")
 
